@@ -229,7 +229,11 @@ Login
 
 <section class="hero">
 <h1>Order Delicious Food Online</h1>
-<input type="text" placeholder="Search your favorite food">
+<input
+type="text"
+id="searchInput"
+placeholder="Search your favorite food"
+onkeyup="searchFood()">
 </section>
 <section class="food-container" id="foodContainer">
 
@@ -490,6 +494,34 @@ window.onload = function() {
     displayCart();
 
 };
+function searchFood() {
+
+    let input =
+    document.getElementById("searchInput")
+    .value.toLowerCase();
+
+    let cards =
+    document.querySelectorAll(".food-card");
+
+    cards.forEach(card => {
+
+        let foodName =
+        card.querySelector("h3")
+        .innerText.toLowerCase();
+
+        if(foodName.includes(input)){
+
+            card.style.display = "block";
+
+        } else {
+
+            card.style.display = "none";
+
+        }
+
+    });
+
+}
 </script>
 
 </body>

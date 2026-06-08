@@ -358,23 +358,24 @@ async function loadFoods() {
 // loadFoods();
 let cart = [];
 
-async function addToCart(name, price){
-               await fetch("http://localhost:5000/cart", {
-        method: "POST",
-        headers: {
-            "Content-Type": "application/json"
-        },
-        body: JSON.stringify({
-            name: name,
-            price: price
-        })
+function addToCart(name, price) {
+
+    let cart = JSON.parse(localStorage.getItem("cart")) || [];
+
+    cart.push({
+        name: name,
+        price: price
     });
 
-        document.getElementById("cartCount").innerText =
-    parseInt(document.getElementById("cartCount").innerText) + 1;
+    localStorage.setItem("cart", JSON.stringify(cart));
+
+    document.getElementById("cartCount").innerText = cart.length;
+
+    alert(name + " Added To Cart 🛒");
 }
 
 function displayCart(){
+let cart = JSON.parse(localStorage.getItem("cart")) || [];
 
 let cartItems =
 document.getElementById("cartItems");

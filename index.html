@@ -482,7 +482,8 @@ function placeOrder(){
     document.getElementById("cart").classList.remove("active");
     document.getElementById("address").value = "";
 document.getElementById("mobile").value = "";
-    alert("🎊 Order Confirmed!\n\n🍔 Your delicious food is on the way.\n🚚 Estimated Delivery: 20-30 Minutes\n\n✨ Thank you for choosing Foodie Express!");
+    document.getElementById("successPopup")
+.style.display = "block";
 
 }
 window.onload = function() {
@@ -522,7 +523,47 @@ function searchFood() {
     });
 
 }
-</script>
+function closeSuccessPopup(){
 
+    document.getElementById("successPopup")
+    .style.display = "none";
+
+}
+</script>
+<div id="successPopup" style="
+display:none;
+position:fixed;
+top:50%;
+left:50%;
+transform:translate(-50%,-50%);
+background:white;
+padding:25px;
+border-radius:10px;
+box-shadow:0 0 15px rgba(0,0,0,0.3);
+text-align:center;
+z-index:9999;
+">
+
+<h2>✅ Order Confirmed!</h2>
+
+<p>
+🍔 Your food is being prepared
+<br><br>
+🚚 Delivery will arrive soon
+</p>
+
+<button onclick="closeSuccessPopup()"
+style="
+padding:10px 20px;
+background:#ff5722;
+color:white;
+border:none;
+border-radius:5px;
+cursor:pointer;
+">
+OK
+</button>
+
+</div>
 </body>
 </html>

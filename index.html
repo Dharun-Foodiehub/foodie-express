@@ -330,7 +330,7 @@ style="width:100%;padding:12px;background:green;color:white;border:none;cursor:p
 <h2>Login</h2>
 
 <input id="username" type="text" placeholder="Username">
-<input type="password" placeholder="Password">
+<input id="password" type="password" placeholder="Password">
 
 <button onclick="loginSuccess()">Login</button>
 
@@ -466,7 +466,8 @@ function loginSuccess(){
 function logout() {
 
     localStorage.removeItem("loggedIn");
-
+    document.getElementById("username").value="";
+    document.getElementById("password").value="";
     document.getElementById("loginModal").style.display = "flex";
 
     alert("👋 Logged Out Successfully!");

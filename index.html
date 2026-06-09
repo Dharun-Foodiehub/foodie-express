@@ -220,6 +220,9 @@ width:100%;
 <button id="loginBtn" class="login-btn" onclick="openLogin()">
 Login
 </button>
+<button id="logoutBtn" class="login-btn" onclick="logout()">
+    🚪 Logout
+</button>
 
 <button class="cart-btn" onclick="toggleCart()">
 🛒 Cart (<span id="cartCount">0</span>)
@@ -448,7 +451,7 @@ function loginSuccess(){
         alert("Enter Username");
         return;
     }
-
+    localStorage.setItem("LoggedIn","true");
     document.getElementById("loginBtn").innerText =
     "👤 " + username;
 
@@ -459,6 +462,14 @@ function loginSuccess(){
     alert("Login Successful ✅");
 
 
+}
+function logout() {
+
+    localStorage.removeItem("loggedIn");
+
+    document.getElementById("loginModal").style.display = "flex";
+
+    alert("👋 Logged Out Successfully!");
 }
 
 function placeOrder(){
@@ -493,7 +504,11 @@ window.onload = function() {
     document.getElementById("cartCount").innerText = cart.length;
 
     displayCart();
-    openLogin();
+
+    if(localStorage.getItem("loggedIn") !== "true"){
+        openLogin();
+    }
+
 };
 function searchFood() {
 
